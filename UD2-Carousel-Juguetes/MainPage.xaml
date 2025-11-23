@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UD2_Carousel_Juguetes.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <Label 
+                Text="Catálogo de Juguetes"
+                FontAttributes="Bold"
+                FontSize="32"
+                HorizontalOptions="Center" />
+
+            <CarouselView x:Name="carouselToys"
+              PeekAreaInsets="60"
+              Loop="True"
+              IndicatorView="indicatorView">
+
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame>
+                            <StackLayout>
+                                <!-- Nombre -->
+                                <Label Text="{Binding NameToy}"/>
+
+                                <!-- Color -->
+                                <Frame BackgroundColor="{Binding ColourToy}"/>
+
+                                <!-- Edad -->
+                                <Label Text="{Binding AgeRecommended}"/>
+
+                                <!-- Precio -->
+                                <Label Text="{Binding PriceToy, StringFormat='{0:C}'}"/>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <IndicatorView x:Name="indicatorView"
+               IndicatorColor="LightGray"
+               SelectedIndicatorColor="#3498DB"/>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,8 @@
+﻿<maui:MauiWinUIApplication
+    x:Class="UD2_Carousel_Juguetes.WinUI.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:maui="using:Microsoft.Maui"
+    xmlns:local="using:UD2_Carousel_Juguetes.WinUI">
+
+</maui:MauiWinUIApplication>
