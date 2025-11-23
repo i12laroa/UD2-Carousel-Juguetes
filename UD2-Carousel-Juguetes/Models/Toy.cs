@@ -8,7 +8,7 @@ namespace UD2_Carousel_Juguetes.Models
     {
         public string? NameToy { get; set; }
         public decimal PriceToy { get; set; }
-        public string? ColourToy { get; set; }
+        public string? ImageToy { get; set; }
         public int AgeRecommended { get; set; }
     }
 }

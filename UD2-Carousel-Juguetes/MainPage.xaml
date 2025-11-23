@@ -5,45 +5,51 @@
 
     <ScrollView>
         <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
+            Padding="20"
+            Spacing="25" BackgroundColor="CornflowerBlue">
 
             <Label 
                 Text="Catálogo de Juguetes"
                 FontAttributes="Bold"
                 FontSize="32"
+                TextColor="White"
                 HorizontalOptions="Center" />
 
-            <CarouselView x:Name="carouselToys"
-              PeekAreaInsets="60"
-              Loop="True"
-              IndicatorView="indicatorView">
+            <CarouselView x:Name="carouselToys" CurrentItem="{Binding SelectedToy}"
+              IndicatorView="indicatorView" BackgroundColor="White">
 
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
-                        <Frame>
+                        <Border>
                             <StackLayout>
                                 <!-- Nombre -->
                                 <Label Text="{Binding NameToy}"/>
 
-                                <!-- Color -->
-                                <Frame BackgroundColor="{Binding ColourToy}"/>
+                                <!-- Imagen -->
+                                <Image Source="{Binding ImageToy}" HeightRequest="150" Aspect="AspectFit"/>
 
                                 <!-- Edad -->
-                                <Label Text="{Binding AgeRecommended}"/>
+                                <Label Text="{Binding AgeRecommended, StringFormat='Edad Recomendada {0} años'}"/>
 
                                 <!-- Precio -->
-                                <Label Text="{Binding PriceToy, StringFormat='{0:C}'}"/>
+
                             </StackLayout>
-                        </Frame>
+                        </Border>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
 
-            <IndicatorView x:Name="indicatorView"
+            <IndicatorView x:Name="indicatorView" HorizontalOptions="Center"
                IndicatorColor="LightGray"
                SelectedIndicatorColor="#3498DB"/>
-            
+
+            <Border Stroke="Gray" StrokeThickness="1" Padding="10" BackgroundColor="White">
+                <StackLayout>
+                    <Label Text="Detalles del Juguete Seleccionado" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center"/>
+                    <Label Text="{Binding SelectedToy.PriceToy, StringFormat='Precio: ${0:F2}'}"/>
+                </StackLayout>
+            </Border>
+
         </VerticalStackLayout>
     </ScrollView>
 

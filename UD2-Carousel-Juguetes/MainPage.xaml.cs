@@ -1,12 +1,28 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using UD2_Carousel_Juguetes.Models;
 
 namespace UD2_Carousel_Juguetes
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage : ContentPage, INotifyPropertyChanged
     {
         // ObservableCollection que contendrá los juguetes
         private ObservableCollection<Toy> List_Toys;
+
+        private Toy? _selectedToy;
+        public Toy? SelectedToy
+        {
+            get => _selectedToy;
+            set
+            {
+                if (_selectedToy != value)
+                {
+                    _selectedToy = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public MainPage()
         {
@@ -17,6 +33,8 @@ namespace UD2_Carousel_Juguetes
 
             // Asignar la colección al CarouselView
             carouselToys.ItemsSource = List_Toys;
+
+            BindingContext = this;
         }
 
         private void RandomMakeToys()
@@ -25,26 +43,34 @@ namespace UD2_Carousel_Juguetes
             List_Toys = new ObservableCollection<Toy>();
 
             // Arrays con datos para generar juguetes aleatorios
-            string[] typeToys = { "Robot", "Muñeca", "Pelota", "Coche", "Puzzle",
-                                      "Peluche", "Lego", "Tren", "Avión", "Dinosaurio" };
-
-            string[] colours = { "#FF6B6B", "#4ECDC4", "#45B7D1", "#FFA07A",
-                                "#98D8C8", "#F7DC6F", "#BB8FCE", "#85C1E2" };
+            string[] typeToys = { "Robot", "Muñeca", "Pelota", "Coche"};
+            string[] imageToys = { "robot.jpg", "doll.jpg", "ball.jpg", "car.jpg" };
 
             Random random = new Random();
 
-            // Generar 8 juguetes aleatorios
-            for (int i = 0; i < 8; i++)
-            {
+            var indexImages=0;
+            foreach (string type in typeToys) {
+
                 List_Toys.Add(new Toy
                 {
-                    NameToy = typeToys[random.Next(typeToys.Length)] + " #" + (i + 1),
+                    NameToy = type,
                     PriceToy = random.Next(10, 100),
-                    ColourToy = colours[random.Next(colours.Length)],
+                    ImageToy = imageToys[indexImages],
                     AgeRecommended = random.Next(3, 13)
                 });
+                indexImages++;
             }
         }
+
+        // Implementación de INotifyPropertyChanged
+        public new event PropertyChangedEventHandler PropertyChanged;
+
+        protected new void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
     }
     }
-}
+
