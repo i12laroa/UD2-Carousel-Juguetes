@@ -10,19 +10,17 @@ namespace UD2_Carousel_Juguetes
         // ObservableCollection que contendrá los juguetes
         private ObservableCollection<Toy> List_Toys;
 
-        private Toy? _selectedToy;
+        private Toy? _toyselected;
         public Toy? SelectedToy
         {
-            get => _selectedToy;
+            get { return _toyselected; }
             set
             {
-                if (_selectedToy != value)
-                {
-                    _selectedToy = value;
-                    OnPropertyChanged();
-                }
+                _toyselected = value;
+                OnPropertyChanged();
             }
         }
+
 
         public MainPage()
         {
@@ -62,13 +60,15 @@ namespace UD2_Carousel_Juguetes
             }
         }
 
-        // Implementación de INotifyPropertyChanged
-        public new event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        protected new void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+
+
 
 
     }
