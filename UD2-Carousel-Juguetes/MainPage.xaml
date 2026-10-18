@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="UD2_Carousel_Juguetes.MainPage">
+             xmlns:local="clr-namespace:UD2_Carousel_Juguetes"
+             xmlns:models="clr-namespace:UD2_Carousel_Juguetes.Models"
+             x:Class="UD2_Carousel_Juguetes.MainPage"
+             x:DataType="local:MainPage">
 
     <ScrollView>
         <VerticalStackLayout
@@ -15,11 +18,11 @@
                 TextColor="White"
                 HorizontalOptions="Center" />
 
-            <CarouselView x:Name="carouselToys" CurrentItem="{Binding SelectedToy}"
+            <CarouselView x:Name="carouselToys" ItemsSource="{Binding List_Toys}" CurrentItem="{Binding SelectedToy}"
               IndicatorView="indicatorView" BackgroundColor="White">
 
                 <CarouselView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="models:Toy">
                         <Border>
                             <StackLayout>
                                 <!-- Nombre -->
