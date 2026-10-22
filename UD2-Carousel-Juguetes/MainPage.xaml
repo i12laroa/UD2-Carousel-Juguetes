@@ -24,7 +24,7 @@
                 <CarouselView.ItemTemplate>
                     <DataTemplate x:DataType="models:Toy">
                         <Border>
-                            <StackLayout>
+                            <StackLayout HorizontalOptions="Center">
                                 <!-- Nombre -->
                                 <Label Text="{Binding NameToy}"/>
 
@@ -47,7 +47,7 @@
                SelectedIndicatorColor="#3498DB"/>
 
             <Border Stroke="Gray" StrokeThickness="1" Padding="10" BackgroundColor="White">
-                <StackLayout>
+                <StackLayout HorizontalOptions="Center">
                     <Label Text="Detalles del Juguete Seleccionado" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center"/>
                     <Label Text="{Binding SelectedToy.PriceToy, StringFormat='Precio: ${0:F2}'}"/>
                 </StackLayout>

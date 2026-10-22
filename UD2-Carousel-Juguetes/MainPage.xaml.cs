@@ -8,7 +8,7 @@ namespace UD2_Carousel_Juguetes
     public partial class MainPage : ContentPage
     {
         // ObservableCollection que contendrá los juguetes
-        public ObservableCollection<Toy> List_Toys { get; } = new ObservableCollection<Toy>
+        public ObservableCollection<Toy> List_Toys { get; set; } = new ObservableCollection<Toy>
         {
             new Toy { NameToy = "Robot", PriceToy = 0m, ImageToy = "robot.jpg", AgeRecommended = 0 },
             new Toy { NameToy = "Muñeca", PriceToy = 0m, ImageToy = "doll.jpg", AgeRecommended = 0 },
